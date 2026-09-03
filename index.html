@@ -333,8 +333,15 @@ h3{ font-size:clamp(1.15rem, 2.2vw, 1.4rem); }
 .testi-video{
   position:relative; aspect-ratio:16/10; width:100%;
   background:linear-gradient(140deg,#1c0733,#4a1150 55%,var(--magenta));
+  background-size:cover; background-position:center;
   display:flex; align-items:center; justify-content:center;
 }
+.testi-video::before{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(16,1,39,.15) 0%, rgba(16,1,39,.55) 75%, rgba(16,1,39,.75) 100%);
+  pointer-events:none;
+}
+.testi-video > *{ position:relative; z-index:1; }
 .testi-video .play-btn{
   width:68px; height:68px; border-radius:50%;
   background:rgba(255,255,255,.14); border:1.5px solid rgba(255,255,255,.5);
@@ -751,7 +758,7 @@ h3{ font-size:clamp(1.15rem, 2.2vw, 1.4rem); }
     </div>
 
     <div class="testi-wrap reveal" data-testi>
-      <div class="testi-video">
+      <div class="testi-video" style="background-image:url('https://img.youtube.com/vi/PvyXHes7aQM/maxresdefault.jpg');">
         <span class="video-tag">Depoimento em vídeo</span>
         <a href="https://www.youtube.com/watch?v=PvyXHes7aQM" target="_blank" rel="noopener" class="play-btn" aria-label="Assistir depoimento no YouTube"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></a>
         <span class="video-axis">Caixa e folha</span>
