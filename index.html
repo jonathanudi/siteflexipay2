@@ -333,17 +333,12 @@ h3{ font-size:clamp(1.15rem, 2.2vw, 1.4rem); }
 .testi-video{
   position:relative; aspect-ratio:16/10; width:100%;
   background-color:var(--dark);
-  background-size:cover; background-position:center; background-repeat:no-repeat;
   display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
 }
-.testi-video::before{
-  content:''; position:absolute; inset:0;
-  background:
-    linear-gradient(180deg, rgba(28,7,51,.35) 0%, rgba(74,17,80,.4) 55%, rgba(145,39,143,.45) 100%),
-    linear-gradient(180deg, rgba(16,1,39,.1) 0%, rgba(16,1,39,.5) 78%, rgba(16,1,39,.72) 100%);
-  pointer-events:none;
+.testi-video iframe{
+  position:absolute; inset:0; width:100%; height:100%; border:0; display:block;
 }
-.testi-video > *{ position:relative; z-index:1; }
 .testi-video .play-btn{
   width:68px; height:68px; border-radius:50%;
   background:rgba(255,255,255,.14); border:1.5px solid rgba(255,255,255,.5);
@@ -760,10 +755,8 @@ h3{ font-size:clamp(1.15rem, 2.2vw, 1.4rem); }
     </div>
 
     <div class="testi-wrap reveal" data-testi>
-      <div class="testi-video" style="background-image:url('https://img.youtube.com/vi/PvyXHes7aQM/hqdefault.jpg');">
-        <span class="video-tag">Depoimento em vídeo</span>
-        <a href="https://www.youtube.com/watch?v=PvyXHes7aQM" target="_blank" rel="noopener" class="play-btn" aria-label="Assistir depoimento no YouTube"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></a>
-        <span class="video-axis">Caixa e folha</span>
+      <div class="testi-video">
+        <iframe src="https://www.youtube.com/embed/PvyXHes7aQM?si=lp5d06B-y7xQWi_B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
       <div class="testi-content">
         <p class="testi-quote"></p>
@@ -1014,7 +1007,7 @@ document.addEventListener('DOMContentLoaded', function () {
       quoteEl.textContent = s.quote;
       nameEl.textContent = s.name;
       roleEl.textContent = s.role;
-      axisEl.textContent = s.axis;
+      if (axisEl) axisEl.textContent = s.axis;
       dotsWrap.querySelectorAll('span').forEach(function (d, i) { d.classList.toggle('active', i === idx); });
     }
     function goTo(i) { idx = (i + slides.length) % slides.length; render(); }
